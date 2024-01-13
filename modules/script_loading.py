@@ -12,12 +12,11 @@ def load_module(path):
     return module
 
 
-def preload_extensions(extensions_dir, parser, extension_list=None):
+def preload_extensions(extensions_dir, parser):
     if not os.path.isdir(extensions_dir):
         return
 
-    extensions = extension_list if extension_list is not None else os.listdir(extensions_dir)
-    for dirname in sorted(extensions):
+    for dirname in sorted(os.listdir(extensions_dir)):
         preload_script = os.path.join(extensions_dir, dirname, "preload.py")
         if not os.path.isfile(preload_script):
             continue
